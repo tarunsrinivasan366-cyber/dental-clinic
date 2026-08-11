@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wren &amp; Molar Dental Studio — Modern Dentistry, Warmly Done</title>
+<meta name="description" content="A calm, modern dental studio focused on gentle care, honest advice, and smiles you're proud of.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink: #16302B;
+    --ink-soft: #2B463F;
+    --cream: #F6F2E9;
+    --cream-2: #EFE9DA;
+    --sage: #A9C4AC;
+    --sage-pale: #E1EAE0;
+    --gold: #BD9552;
+    --gold-soft: #E7D6B4;
+    --blush: #E6D6C9;
+    --white: #FFFDF9;
+    --line: rgba(22,48,43,0.14);
+
+    --display: 'Fraunces', serif;
+    --body: 'Manrope', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+
+    --container: 1180px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family: var(--body);
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+  .wrap{ max-width: var(--container); margin:0 auto; padding: 0 32px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  ::selection{ background: var(--gold-soft); color: var(--ink); }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background: var(--gold);
+    display:inline-block;
+  }
+
+  h1,h2,h3,h4{ font-family: var(--display); font-weight:500; color: var(--ink); letter-spacing:-0.01em; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 15px 28px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: transform 0.35s cubic-bezier(.16,1,.3,1), box-shadow 0.35s;
+  }
+  .btn-primary{
+    background: var(--ink);
+    color: var(--cream);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(22,48,43,0.25); }
+  .btn-ghost{
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--line);
+  }
+  .btn-ghost:hover{ border-color: var(--ink); transform: translateY(-2px); }
+  .btn svg{ width:16px; height:16px; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: fixed; top:0; left:0; right:0; z-index: 100;
+    background: rgba(246,242,233,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  header.scrolled{ border-color: var(--line); }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 20px 32px;
+    max-width: var(--container); margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family: var(--display); font-size:20px; font-weight:600;
+  }
+  .logo svg{ width:30px; height:30px; }
+  .nav-links{ display:flex; align-items:center; gap:38px; }
+  .nav-links a{
+    font-size: 14.5px; font-weight:600; color: var(--ink-soft);
+    position:relative;
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; right:0; bottom:-6px; height:1.5px;
+    background: var(--gold); transform: scaleX(0); transform-origin: right;
+    transition: transform 0.35s cubic-bezier(.16,1,.3,1);
+  }
+  .nav-links a:hover::after{ transform: scaleX(1); transform-origin: left; }
+  .nav-cta{ display:flex; align-items:center; gap:18px; }
+  .nav-cta .btn{ padding: 11px 22px; font-size:14px; }
+  .menu-toggle{ display:none; }
+
+  @media (max-width: 900px){
+    .nav-links{ display:none; }
+    .menu-toggle{ display:block; }
+    .nav-cta a.btn-ghost{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 168px 0 110px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 60px;
+    align-items:center;
+  }
+  .hero-copy h1{
+    font-size: clamp(40px, 5.2vw, 66px);
+    line-height: 1.04;
+    margin: 22px 0 24px;
+  }
+  .hero-copy h1 em{
+    font-style: italic;
+    color: var(--gold);
+    position: relative;
+  }
+  .hero-copy p{
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 460px;
+    margin-bottom: 36px;
+  }
+  .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 46px; }
+
+  .hero-stats{
+    display:flex; gap: 40px;
+    border-top: 1px solid var(--line);
+    padding-top: 26px;
+  }
+  .hero-stats div strong{
+    font-family: var(--display); font-size: 28px; display:block; color: var(--ink);
+  }
+  .hero-stats div span{
+    font-family: var(--mono); font-size: 11.5px; letter-spacing:0.06em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+
+  .hero-visual{ position: relative; height: 520px; }
+  .arch-ring{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .arch-ring svg{ width:100%; height:100%; }
+
+  .float-card{
+    position:absolute;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 16px 18px;
+    box-shadow: 0 20px 45px rgba(22,48,43,0.10);
+    display:flex; align-items:center; gap:12px;
+    animation: drift 7s ease-in-out infinite;
+  }
+  .float-card.c1{ top: 10%; left: -4%; animation-delay: 0s; }
+  .float-card.c2{ bottom: 14%; right: -6%; animation-delay: 1.2s; }
+  .float-card .ic{
+    width: 38px; height:38px; border-radius: 50%;
+    background: var(--sage-pale); display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .float-card .ic svg{ width:18px; height:18px; color: var(--ink-soft); }
+  .float-card strong{ display:block; font-size:14px; font-weight:800; }
+  .float-card span{ font-size:12px; color: var(--ink-soft); }
+
+  @keyframes drift{
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-12px); }
+  }
+
+  /* smile-line divider, the signature motif */
+  .smile-divider{ width:100%; height: 70px; display:block; margin: -10px 0; }
+  .smile-divider path{
+    stroke: var(--line);
+    stroke-width: 1.4;
+    fill:none;
+  }
+
+  /* ---------- MARQUEE / TRUST STRIP ---------- */
+  .trust-strip{
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 22px 0;
+    overflow:hidden;
+    background: var(--cream-2);
+  }
+  .trust-track{
+    display:flex; gap:64px; white-space:nowrap;
+    animation: scroll-left 26s linear infinite;
+    width:max-content;
+  }
+  .trust-track span{
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em;
+    color: var(--ink-soft); text-transform:uppercase;
+    display:flex; align-items:center; gap:10px;
+  }
+  .trust-track span::before{ content:"◆"; color: var(--gold); font-size:8px; }
+  @keyframes scroll-left{ from{ transform:translateX(0); } to{ transform: translateX(-50%); } }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding: 118px 0; position:relative; }
+  .section-head{
+    max-width: 640px;
+    margin-bottom: 64px;
+  }
+  .section-head h2{
+    font-size: clamp(30px, 3.6vw, 44px);
+    margin-top: 18px;
+    line-height:1.12;
+  }
+  .section-head p{ color: var(--ink-soft); font-size:16.5px; margin-top:16px; max-width:520px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .section-head.center .eyebrow{ justify-content:center; }
+  .section-head.center .eyebrow::before{ display:none; }
+  .section-head.center p{ margin-left:auto; margin-right:auto; }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    overflow:hidden;
+  }
+  .service-card{
+    background: var(--white);
+    padding: 40px 34px;
+    transition: background 0.35s;
+  }
+  .service-card:hover{ background: var(--sage-pale); }
+  .service-card .ic{
+    width:52px; height:52px; border-radius: 14px;
+    background: var(--ink); display:flex; align-items:center; justify-content:center;
+    margin-bottom: 26px;
+  }
+  .service-card .ic svg{ width:24px; height:24px; color: var(--cream); }
+  .service-card h3{ font-size:20px; margin-bottom:10px; font-weight:600; }
+  .service-card p{ color: var(--ink-soft); font-size:14.5px; }
+
+  @media (max-width: 860px){
+    .services-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- APPROACH / STEPS (real sequence) ---------- */
+  .approach{ background: var(--ink); color: var(--cream); border-radius: 32px; margin: 0 32px; padding: 100px 0; }
+  .approach .wrap{ max-width: 1050px; }
+  .approach .section-head h2, .approach .eyebrow{ color: var(--cream); }
+  .approach .eyebrow::before{ background: var(--gold); }
+  .approach .section-head p{ color: rgba(246,242,233,0.65); }
+
+  .steps{ display:grid; grid-template-columns: repeat(4,1fr); gap: 28px; }
+  .step{
+    border-top: 1px solid rgba(246,242,233,0.2);
+    padding-top: 22px;
+  }
+  .step .num{ font-family: var(--mono); font-size: 13px; color: var(--gold); display:block; margin-bottom: 18px; }
+  .step h4{ color: var(--cream); font-size: 18px; margin-bottom: 10px; font-weight:500; }
+  .step p{ color: rgba(246,242,233,0.62); font-size: 14px; }
+
+  @media (max-width: 860px){
+    .steps{ grid-template-columns: 1fr 1fr; }
+    .approach{ margin: 0 16px; border-radius: 24px; }
+  }
+  @media (max-width: 560px){
+    .steps{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- TEAM ---------- */
+  .team-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 26px;
+  }
+  .team-card{
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow:hidden;
+    transition: transform 0.4s cubic-bezier(.16,1,.3,1), box-shadow 0.4s;
+  }
+  .team-card:hover{ transform: translateY(-6px); box-shadow: 0 24px 40px rgba(22,48,43,0.12); }
+  .avatar{
+    height: 190px;
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--display); font-size: 40px; color: var(--white);
+    position:relative;
+  }
+  .avatar::after{
+    content:""; position:absolute; inset:0; opacity:0.5;
+    background-image: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.35), transparent 55%);
+  }
+  .team-card .info{ padding: 20px 22px 26px; }
+  .team-card h4{ font-size:17px; font-weight:600; margin-bottom:4px; }
+  .team-card span{ font-family: var(--mono); font-size:12px; color: var(--gold); text-transform:uppercase; letter-spacing:0.05em; }
+  .team-card p{ font-size: 13.5px; color: var(--ink-soft); margin-top:10px; }
+
+  @media (max-width: 980px){ .team-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 560px){ .team-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testi-wrap{ position:relative; }
+  .testi-track{
+    display:flex; gap: 24px; overflow-x:auto; scroll-snap-type: x mandatory;
+    padding-bottom: 12px; scrollbar-width:none;
+  }
+  .testi-track::-webkit-scrollbar{ display:none; }
+  .testi-card{
+    scroll-snap-align:start;
+    min-width: min(420px, 82vw);
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 36px;
+  }
+  .testi-card .quote-mark{ font-family: var(--display); font-size: 52px; color: var(--gold-soft); line-height:1; margin-bottom: 6px; }
+  .testi-card p.quote{ font-size: 16.5px; color: var(--ink); margin-bottom: 26px; font-family: var(--display); line-height:1.45; }
+  .testi-person{ display:flex; align-items:center; gap:12px; }
+  .testi-person .dot{
+    width:40px; height:40px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--mono); font-size:13px; color:var(--white);
+  }
+  .testi-person strong{ display:block; font-size: 14px; }
+  .testi-person span{ font-size: 12.5px; color: var(--ink-soft); }
+
+  /* ---------- CTA BANNER ---------- */
+  .cta-banner{
+    background: var(--sage-pale);
+    border-radius: 32px;
+    margin: 0 32px;
+    padding: 90px 60px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-banner h2{ font-size: clamp(30px, 4vw, 48px); max-width: 700px; margin: 18px auto 30px; }
+  .cta-banner .actions{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+  @media (max-width: 640px){ .cta-banner{ margin:0 16px; padding: 60px 24px; } }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{ background: var(--ink); color: var(--cream); padding-top: 90px; }
+  .foot-grid{
+    display:grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 40px;
+    padding-bottom: 70px;
+    border-bottom: 1px solid rgba(246,242,233,0.15);
+  }
+  .foot-brand .logo{ color: var(--cream); margin-bottom: 16px; }
+  .foot-brand p{ color: rgba(246,242,233,0.6); font-size: 14px; max-width: 280px; }
+  .foot-col h5{ font-family: var(--mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color: var(--gold); margin-bottom: 18px; }
+  .foot-col a, .foot-col p{ display:block; font-size: 14.5px; color: rgba(246,242,233,0.75); margin-bottom: 12px; }
+  .foot-col a:hover{ color: var(--cream); }
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 26px 0; font-size: 13px; color: rgba(246,242,233,0.5);
+    flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width: 860px){
+    .foot-grid{ grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px){
+    .foot-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{ opacity:0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(.16,1,.3,1), transform 0.8s cubic-bezier(.16,1,.3,1); }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* mobile nav drawer */
+  .mobile-drawer{
+    position:fixed; inset:0; background: var(--cream); z-index: 200;
+    display:flex; flex-direction:column; padding: 28px 32px;
+    transform: translateX(100%); transition: transform 0.4s cubic-bezier(.16,1,.3,1);
+  }
+  .mobile-drawer.open{ transform: translateX(0); }
+  .mobile-drawer .top{ display:flex; justify-content:space-between; align-items:center; margin-bottom: 50px; }
+  .mobile-drawer a{ font-family: var(--display); font-size: 30px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .close-drawer svg{ width:26px; height:26px; }
+
+  @media (min-width: 901px){ .mobile-drawer{ display:none; } }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="siteHeader">
+  <nav>
+    <a href="#top" class="logo">
+      <svg viewBox="0 0 32 32" fill="none"><path d="M16 4C11 4 8 8 8 13c0 5 1.8 8.5 2.6 12.2.4 1.9 3 2 3.6.2.6-1.8 1-3.6 1.8-3.6s1.2 1.8 1.8 3.6c.6 1.8 3.2 1.7 3.6-.2C22.2 21.5 24 18 24 13c0-5-3-9-8-9z" stroke="#16302B" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      Wren &amp; Molar
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Care</a></li>
+      <li><a href="#approach">Your Visit</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#stories">Stories</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="tel:+15551234567" class="btn btn-ghost">(555) 123-4567</a>
+      <a href="#contact" class="btn btn-primary">Book a visit</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="#16302B" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="top">
+    <span class="logo">Wren &amp; Molar</span>
+    <button class="close-drawer" id="closeDrawer" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#16302B" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <a href="#services">Care</a>
+  <a href="#approach">Your Visit</a>
+  <a href="#team">Team</a>
+  <a href="#stories">Stories</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<div id="top"></div>
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">Open Tue–Sat · Bengaluru</span>
+      <h1>Dentistry that feels like <em>an exhale</em>, not an appointment.</h1>
+      <p>Wren &amp; Molar is a small dental studio built around unhurried visits, plain-language advice, and care that actually feels calm — from your first cleaning to your last checkup.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Book a visit<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#approach" class="btn btn-ghost">See how it works</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>4.9<span style="font-size:16px;">/5</span></strong><span>820+ patient reviews</span></div>
+        <div><strong>12 yrs</strong><span>Average dentist tenure</span></div>
+        <div><strong>0</strong><span>Surprise bills, ever</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="arch-ring">
+        <svg viewBox="0 0 420 420" fill="none">
+          <circle cx="210" cy="210" r="180" stroke="#A9C4AC" stroke-width="1.2" stroke-dasharray="2 8"/>
+          <path d="M110 235c8 42 44 72 100 72s92-30 100-72" stroke="#16302B" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M130 225c6 34 36 58 80 58s74-24 80-58" stroke="#BD9552" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/>
+          <g opacity="0.8">
+            <rect x="150" y="150" width="14" height="34" rx="6" fill="#A9C4AC"/>
+            <rect x="175" y="140" width="14" height="44" rx="6" fill="#A9C4AC"/>
+            <rect x="200" y="134" width="14" height="50" rx="6" fill="#16302B"/>
+            <rect x="225" y="140" width="14" height="44" rx="6" fill="#A9C4AC"/>
+            <rect x="250" y="150" width="14" height="34" rx="6" fill="#A9C4AC"/>
+          </g>
+        </svg>
+      </div>
+      <div class="float-card c1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#16302B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><strong>Same-week booking</strong><span>Usually within 3 days</span></div>
+      </div>
+      <div class="float-card c2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#16302B" stroke-width="2"/><path d="M12 8v4l3 2" stroke="#16302B" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><strong>35-min average visit</strong><span>No waiting-room drift</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="smile-divider" viewBox="0 0 1200 70" preserveAspectRatio="none"><path d="M0 20 Q 300 70 600 20 T 1200 20"/></svg>
+
+<!-- ================= TRUST STRIP ================= -->
+<div class="trust-strip">
+  <div class="trust-track">
+    <span>Invisalign certified</span><span>Digital X-rays</span><span>Same-day crowns</span><span>Pediatric friendly</span><span>Sedation options</span><span>Insurance-friendly billing</span>
+    <span>Invisalign certified</span><span>Digital X-rays</span><span>Same-day crowns</span><span>Pediatric friendly</span><span>Sedation options</span><span>Insurance-friendly billing</span>
+  </div>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What we treat</span>
+      <h2>Care built around how teeth actually misbehave.</h2>
+      <p>From routine cleanings to the visits nobody wants to book — we cover the full range, without the referral runaround.</p>
+    </div>
+
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4c-4 0-6.5 3-6.5 6.5 0 3.8 1.4 6.4 2 9.2.3 1.3 2.2 1.4 2.6.1.5-1.4.8-2.7 1.9-2.7s1.4 1.3 1.9 2.7c.4 1.3 2.3 1.2 2.6-.1.6-2.8 2-5.4 2-9.2C18.5 7 16 4 12 4z" stroke="currentColor" stroke-width="1.6"/></svg></div>
+        <h3>Cleanings &amp; checkups</h3>
+        <p>Twice-a-year visits with a hygienist who actually remembers your name and your last filling.</p>
+      </div>
+      <div class="service-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M4 12a4 4 0 004 4h8a4 4 0 004-4M4 12a4 4 0 014-4h8a4 4 0 014 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3>Invisalign &amp; braces</h3>
+        <p>Clear-aligner plans mapped out visually before you commit, with monthly progress check-ins.</p>
+      </div>
+      <div class="service-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3>Same-day crowns</h3>
+        <p>Milled in-studio while you wait — one visit instead of the usual two-appointment wait.</p>
+      </div>
+      <div class="service-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-9.5-9C1 8 3 4 7 4c2 0 4 1.2 5 3 1-1.8 3-3 5-3 4 0 6 4 4.5 8-2.5 4.5-9.5 9-9.5 9z" stroke="currentColor" stroke-width="1.6"/></svg></div>
+        <h3>Root canals</h3>
+        <p>Handled gently, with clear pain-management options explained before we start, not after.</p>
+      </div>
+      <div class="service-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M9 9h6M9 13h6M9 17h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3>Implants &amp; bridges</h3>
+        <p>Full-arch and single-tooth restorations planned with 3D imaging, not guesswork.</p>
+      </div>
+      <div class="service-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <h3>Cosmetic whitening</h3>
+        <p>In-studio or take-home kits, calibrated to your natural shade rather than a generic max-white.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APPROACH (real sequence, numbering justified) ================= -->
+<section id="approach">
+  <div class="approach">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Your first visit</span>
+        <h2>Four steps, one afternoon, zero surprises.</h2>
+        <p>Every new patient moves through the same short sequence — so you always know what's coming next.</p>
+      </div>
+      <div class="steps reveal">
+        <div class="step">
+          <span class="num">01 — Intake</span>
+          <h4>Tell us what's going on</h4>
+          <p>A short form and a real conversation about symptoms, history, and what "healthy teeth" means to you.</p>
+        </div>
+        <div class="step">
+          <span class="num">02 — Imaging</span>
+          <h4>Digital X-rays, low dose</h4>
+          <p>Full-mouth digital scans, reviewed on screen with you — not filed away for later.</p>
+        </div>
+        <div class="step">
+          <span class="num">03 — The plan</span>
+          <h4>See the options, in writing</h4>
+          <p>Costs, timelines, and alternatives laid out before any drill touches anything.</p>
+        </div>
+        <div class="step">
+          <span class="num">04 — Treatment</span>
+          <h4>Book only what you approve</h4>
+          <p>We start with the first agreed step — no bundled add-ons, no pressure in the chair.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section id="team">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Who you'll see</span>
+      <h2>Four dentists, one shared chart, zero handoffs lost.</h2>
+      <p>Small enough that your dentist recognizes your voice on the phone.</p>
+    </div>
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <div class="avatar" style="background: linear-gradient(135deg,#16302B,#3E6358);">AK</div>
+        <div class="info">
+          <h4>Dr. Aanya Kapoor</h4>
+          <span>Lead Dentist · General</span>
+          <p>12 years in general &amp; restorative care. Believes the best filling is the one you forget about.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background: linear-gradient(135deg,#BD9552,#8C6C36);">RS</div>
+        <div class="info">
+          <h4>Dr. Rohan Seth</h4>
+          <span>Orthodontics</span>
+          <p>Runs our Invisalign program. Maps every case in 3D before a single aligner ships.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background: linear-gradient(135deg,#4C7A6B,#2C4B41);">MN</div>
+        <div class="info">
+          <h4>Dr. Meera Nair</h4>
+          <span>Pediatric Dentistry</span>
+          <p>Makes first visits genuinely fun — most of her patients ask to come back sooner.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background: linear-gradient(135deg,#8C6C36,#BD9552);">SV</div>
+        <div class="info">
+          <h4>Dr. Sameer Verma</h4>
+          <span>Oral Surgery</span>
+          <p>Handles implants, extractions, and the visits people worry about most — calmly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section id="stories">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Patient stories</span>
+      <h2>What people actually say afterward.</h2>
+    </div>
+    <div class="testi-wrap reveal">
+      <div class="testi-track">
+        <div class="testi-card">
+          <div class="quote-mark">"</div>
+          <p class="quote">First dentist visit in years that didn't feel like a sales pitch. Dr. Kapoor explained everything before doing anything.</p>
+          <div class="testi-person">
+            <div class="dot" style="background:#16302B;">PN</div>
+            <div><strong>Priya N.</strong><span>Patient since 2022</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="quote-mark">"</div>
+          <p class="quote">My son used to cry before every checkup. Now he asks when his next one is. Dr. Nair is a wizard.</p>
+          <div class="testi-person">
+            <div class="dot" style="background:#BD9552;">AT</div>
+            <div><strong>Arjun T.</strong><span>Parent, 2 kids</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="quote-mark">"</div>
+          <p class="quote">Got a same-day crown before a work trip. Walked in worried, walked out early with a temp-free fix.</p>
+          <div class="testi-person">
+            <div class="dot" style="background:#4C7A6B;">KL</div>
+            <div><strong>Kavya L.</strong><span>Patient since 2023</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="quote-mark">"</div>
+          <p class="quote">Eighteen months of Invisalign, monthly photos to track progress, never once felt like I was guessing.</p>
+          <div class="testi-person">
+            <div class="dot" style="background:#8C6C36;">DR</div>
+            <div><strong>Dev R.</strong><span>Invisalign patient</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BANNER ================= -->
+<section>
+  <div class="cta-banner reveal">
+    <span class="eyebrow" style="justify-content:center;">Ready when you are</span>
+    <h2>Your teeth already know it's time. Let's get it on the calendar.</h2>
+    <div class="actions">
+      <a href="#contact" class="btn btn-primary">Book a visit</a>
+      <a href="tel:+15551234567" class="btn btn-ghost">Call (555) 123-4567</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT / FOOTER ================= -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="logo">Wren &amp; Molar</span>
+        <p>A small dental studio in Indiranagar, Bengaluru — booking new and returning patients Tuesday through Saturday.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Visit</h5>
+        <p>4th Floor, Aster Court<br>100 Feet Road, Indiranagar<br>Bengaluru 560038</p>
+      </div>
+      <div class="foot-col">
+        <h5>Hours</h5>
+        <p>Tue – Fri · 9am – 6pm</p>
+        <p>Saturday · 9am – 2pm</p>
+        <p>Sun – Mon · Closed</p>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <a href="tel:+15551234567">(555) 123-4567</a>
+        <a href="mailto:hello@wrenmolar.example">hello@wrenmolar.example</a>
+        <a href="#services">New patient forms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Wren &amp; Molar Dental Studio. Demo site — not a real clinic.</span>
+      <span>Built for demonstration purposes</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 12);
+  });
+
+  // mobile drawer
+  const drawer = document.getElementById('mobileDrawer');
+  document.getElementById('menuToggle').addEventListener('click', () => drawer.classList.add('open'));
+  document.getElementById('closeDrawer').addEventListener('click', () => drawer.classList.remove('open'));
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
